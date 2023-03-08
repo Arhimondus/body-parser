@@ -24,6 +24,7 @@ var parsers = Object.create(null)
  * @typedef Parsers
  * @type {function}
  * @property {function} json
+ * @property {function} ion
  * @property {function} raw
  * @property {function} text
  * @property {function} urlencoded
@@ -47,6 +48,18 @@ Object.defineProperty(exports, 'json', {
   enumerable: true,
   get: createParserGetter('json')
 })
+
+/**
+ * ION parser.
+ * @public
+ */
+
+Object.defineProperty(exports, 'ion', {
+  configurable: true,
+  enumerable: true,
+  get: createParserGetter('ion')
+})
+
 
 /**
  * Raw parser.
@@ -139,6 +152,9 @@ function loadParser (parserName) {
   switch (parserName) {
     case 'json':
       parser = require('./lib/types/json')
+      break
+    case 'ion':
+      parser = require('./lib/types/ion')
       break
     case 'raw':
       parser = require('./lib/types/raw')
